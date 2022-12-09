@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:FreshInterview.ViewModels"
+             xmlns:models="clr-namespace:FreshInterview.Shared.Models;assembly=FreshInterview.Shared"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+             x:Class="FreshInterview.Pages.MainPage"
+             x:DataType="viewModels:MainVm"
+             x:Name="MainView"
+             Title="Breweries"
+             BackgroundColor="{StaticResource Background}">
+
+    <Grid VerticalOptions="FillAndExpand">
+        <ActivityIndicator IsEnabled="{Binding IsBusy}"
+                           IsVisible="{Binding IsBusy}"
+                           IsRunning="{Binding IsBusy}"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"/>
+
+        <CollectionView Margin="10"
+                        ItemsSource="{Binding Breweries}"
+                        IsVisible="{Binding IsBusy, Converter={StaticResource ReverseBoolConverter}}"
+                        RemainingItemsThreshold="4"
+                        RemainingItemsThresholdReachedCommand="{Binding LoadMoreBreweriesCommand}">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="models:Brewery">
+
+                    <StackLayout Margin="8">
+                        <StackLayout.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BindingContext.NavigateToBreweryCommand, Source={x:Reference MainView}}"
+                                                  CommandParameter="{Binding .}" />
+                        </StackLayout.GestureRecognizers>
+
+                        <yummy:PancakeView Margin="4,0"
+                                           CornerRadius="4"
+                                           BackgroundColor="White">
+
+                            <yummy:PancakeView.Shadow>
+                                <yummy:DropShadow BlurRadius="4"
+                                                  Color="Gray"
+                                                  Offset="10,10" />
+                            </yummy:PancakeView.Shadow>
+
+                            <Grid ColumnDefinitions="Auto,*,22"
+                                  RowDefinitions="*,*"
+                                  RowSpacing="0"
+                                  Padding="10">
+
+                                <Label Grid.Column="0"
+                                       Grid.Row="0"
+                                       FontFamily="Fa-Solid"
+                                       Text="{StaticResource BeerMugEmpty}"
+                                       VerticalOptions="Center"
+                                       FontSize="20"/>
+
+                                <Label Grid.Column="1"
+                                       Grid.Row="0"
+                                       Text="{Binding Name}"
+                                       LineBreakMode="TailTruncation"
+                                       VerticalOptions="Center"
+                                       FontSize="20" />
+
+                                <Label Grid.Column="0"
+                                       Grid.Row="1"
+                                       FontFamily="Fa-Solid"
+                                       VerticalOptions="Center"
+                                       Text="{StaticResource LocationDot}"
+                                       FontSize="12"/>
+
+                                <Label Grid.Column="1"
+                                       Grid.Row="1"
+                                       Margin="-10,0,0,0"
+                                       VerticalOptions="Center"
+                                       Text="{Binding FormattedAddress}"
+                                       FontSize="12" />
+
+                                <Label Grid.Column="2"
+                                       Grid.Row="0"
+                                       Grid.RowSpan="2"
+                                       FontFamily="Fa-Solid"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="End"
+                                       WidthRequest="22"
+                                       Text="{StaticResource ChevronRight}"
+                                       FontSize="20"/>
+                            </Grid>
+
+                        </yummy:PancakeView>
+                    </StackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+
+</ContentPage>
+

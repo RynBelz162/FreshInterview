@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:FreshInterview.ViewModels"
+    x:Class="FreshInterview.Pages.BreweryDetailPage"
+    x:DataType="viewModels:BreweryDetailVm"
+    Title="{Binding Brewery.Name}"
+    BackgroundColor="{StaticResource Background}">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="Label" TargetType="Label">
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="VerticalOptions" Value="Center" />
+            </Style>
+
+        </ResourceDictionary>
+
+    </ContentPage.Resources>
+
+    <ContentPage.Content>
+        <Grid ColumnDefinitions="Auto,*"
+              RowDefinitions="Auto,1,Auto,
+                              Auto,1,Auto,
+                              Auto,1,Auto"
+              Margin="10">
+
+
+            <Label Grid.Column="0"
+                   Grid.Row="0"
+                   FontFamily="Fa-Solid"
+                   Text="{StaticResource LocationDot}"
+                   Style="{StaticResource Label}"/>
+
+            <Label Grid.Column="1"
+                   Grid.Row="0"
+                   Text="Location"
+                   Style="{StaticResource Label}" />
+
+            <BoxView HeightRequest="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" BackgroundColor="Black" VerticalOptions="End" />
+
+            <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="2" Text="{Binding Brewery.FormattedAddress}" />
+
+            <Label Grid.Column="0"
+                   Grid.Row="3"
+                   FontFamily="Fa-Solid"
+                   Text="{StaticResource Shop}"
+                   Style="{StaticResource Label}"/>
+
+            <Label Grid.Column="1"
+                   Grid.Row="3"
+                   Text="Type"
+                   Style="{StaticResource Label}" />
+
+            <BoxView HeightRequest="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="4" BackgroundColor="Black" VerticalOptions="End" />
+
+            <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="5" Text="{Binding Brewery.BreweryType}" />
+
+            <Label Grid.Column="0"
+                   Grid.Row="6"
+                   FontFamily="Fa-Solid"
+                   Text="{StaticResource Globe}"
+                   Style="{StaticResource Label}"/>
+
+            <Label Grid.Column="1"
+                   Grid.Row="6"
+                   Text="Website URL"
+                   Style="{StaticResource Label}" />
+
+            <BoxView HeightRequest="1" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="7" BackgroundColor="Black" VerticalOptions="End" />
+
+            <Label Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="8" Text="{Binding Brewery.WebsiteUrl}" />
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
+

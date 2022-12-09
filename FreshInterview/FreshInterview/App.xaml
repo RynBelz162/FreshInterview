@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:converters="clr-namespace:FreshInterview.Converters"
+             x:Class="FreshInterview.App">
+    <Application.Resources>
+        <converters:ReverseBoolConverter x:Key="ReverseBoolConverter" />
+        <converters:StringIsNullOrEmpty x:Key="StringIsNullOrEmpty" />
+
+        <!--Colors-->
+        <Color x:Key="Background">#FAF9F6</Color>
+
+        <!--Font Awesome Icons-->
+        <x:String x:Key="BeerMugEmpty">&#xf0fc;</x:String>
+        <x:String x:Key="LocationDot">&#xf3c5;</x:String>
+        <x:String x:Key="ChevronRight">&#xf054;</x:String>
+        <x:String x:Key="Shop">&#xf54f;</x:String>
+        <x:String x:Key="Globe">&#xf0ac;</x:String>
+    </Application.Resources>
+</Application>
